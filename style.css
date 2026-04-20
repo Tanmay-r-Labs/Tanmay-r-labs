@@ -1,0 +1,30 @@
+:root {
+      --bg: #0a0a0a;
+      --accent: #ffffff;
+      --text-high: #ffffff;
+      --text-mid: rgba(255, 255, 255, 0.85);
+      --border: rgba(255, 255, 255, 0.12);
+      --font-h: 'Outfit', sans-serif;
+      --font-b: 'Inter', sans-serif;
+}
+
+body {
+      background: var(--bg);
+      color: var(--text-high);
+      font-family: var(--font-b);
+      margin: 0;
+}
+
+.hero-title {
+      font-family: var(--font-h);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      text-align: center;
+}
+
+.profile-target {
+      width: 250px;
+      height: auto;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 0 auto;
+}
