@@ -4,6 +4,170 @@
     box-sizing: border-box;
 }
 
+/* ============================================================
+   FEATURE 1: ANIMATED GRADIENT NOISE BACKGROUND
+   ============================================================ */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 20% 20%, rgba(79,70,229,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139,92,246,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(30,20,60,0.3) 0%, transparent 70%);
+    animation: gradientShift 15s ease infinite alternate;
+    z-index: -2;
+    pointer-events: none;
+}
+@keyframes gradientShift {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    33%  { transform: translate(3%, 2%) rotate(1deg); }
+    66%  { transform: translate(-2%, 3%) rotate(-1deg); }
+    100% { transform: translate(1%, -2%) rotate(0.5deg); }
+}
+
+/* ============================================================
+   FEATURE 4: BLUEPRINT GRID LINES
+   ============================================================ */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================================================
+   FEATURE 1: STAR CANVAS
+   ============================================================ */
+#star-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================================================
+   FEATURE 2: CURSOR TRAIL
+   ============================================================ */
+#cursor-trail-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+.cursor-dot {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: cursorFade 0.8s ease-out forwards;
+}
+@keyframes cursorFade {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+}
+
+/* ============================================================
+   FEATURE 5: AMBIENT SOUND TOGGLE BUTTON
+   ============================================================ */
+.sound-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+.sound-toggle:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(139,92,246,0.3);
+}
+.sound-toggle.active {
+    background: rgba(139,92,246,0.2);
+    border-color: rgba(139,92,246,0.5);
+    box-shadow: 0 0 25px rgba(139,92,246,0.4);
+    color: #c4b5fd;
+}
+
+/* ============================================================
+   FEATURE 6: WPM COUNTER WIDGET
+   ============================================================ */
+.wpm-widget {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 2000;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 60px;
+    transition: all 0.3s ease;
+}
+.wpm-widget:hover {
+    border-color: rgba(139,92,246,0.4);
+    box-shadow: 0 0 20px rgba(139,92,246,0.2);
+}
+.wpm-label {
+    font-family: var(--font-h);
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+}
+.wpm-value {
+    font-family: var(--font-h);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #c4b5fd;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+.wpm-widget.typing .wpm-value {
+    color: #a78bfa;
+    text-shadow: 0 0 15px rgba(167,139,250,0.5);
+}
+
+/* ============================================================
+   FEATURE 8: SCROLL-TRIGGERED TYPEWRITER QUOTE
+   ============================================================ */
+.typewriter-quote {
+    overflow: hidden;
+    white-space: normal;
+}
+.typewriter-reveal {
+    animation: typeReveal 0.05s steps(1) both;
+}
+@keyframes typeReveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 .loader-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -287,10 +451,36 @@ body {
 
 .hero-bio {
     font-family: var(--font-b);
-    font-size: 1.35rem; /* Slightly larger for clarity */
-    line-height: 2; /* Editorial line height */
+    font-size: 1.35rem;
+    line-height: 2;
     color: var(--text-mid);
     font-weight: 400;
+}
+
+.hero-quote-credit {
+    font-family: var(--font-b);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1.5px;
+    font-style: italic;
+    margin-top: -5.5rem;
+    margin-bottom: 7rem;
+    text-align: right;
+    padding-right: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.hero-labs-desc {
+    font-family: var(--font-b);
+    font-size: 1rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    font-style: italic;
+    text-align: center;
 }
 
 
@@ -761,6 +951,29 @@ body.light-mode .sun-icon { opacity: 0; }
     transform: translateX(10px) translateY(-5px);
 }
 .tbd .contact-link { opacity: 0.4; pointer-events: none; }
+
+/* Coming Soon contact items */
+.coming-soon-item { opacity: 0.45; }
+.coming-soon-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 0;
+    color: var(--text-mid);
+    cursor: default;
+    border-bottom: 1px solid transparent;
+}
+.coming-soon-val { flex: 1; font-size: 1.05rem; color: var(--text-mid); font-style: italic; }
+.coming-soon-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.35);
+}
 .soon-note { 
     margin-top: 3rem; 
     font-style: italic; 
