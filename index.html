@@ -24,7 +24,11 @@
 </head>
 <body>
 
-    <!-- Star Canvas Background -->
+    <!-- Hidden YouTube Player -->
+    <div id="yt-player-container" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;">
+        <div id="yt-player"></div>
+    </div>
+
     <canvas id="star-canvas"></canvas>
 
     <!-- Cursor Trail Container -->
@@ -105,8 +109,11 @@
             <div class="bossbar-left">
                 <div class="header-name">
                     <span class="name">Tanmay Rathi</span>
-                    <span class="role">Enthusiastic & A Majestic Achiever</span>
+                    <span class="role">Enthusiastic &amp; A Majestic Achiever</span>
                 </div>
+                <button id="music-toggle" class="music-toggle-btn" title="Now Playing: Man Mera" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                </button>
             </div>
 
             <div class="bossbar-center">
@@ -460,5 +467,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
