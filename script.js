@@ -4,19 +4,15 @@
 let ytPlayer = null;
 let ytReady = false;
 let ytMuted = false;
+let userClickedEnter = false;
 const MAN_MERA_ID = "xAiyYmI8RW8"; // Man Mera — Table No. 21
 
 // Called automatically by YouTube IFrame API once loaded
 window.onYouTubeIframeAPIReady = function () {
-    ytReady = true;
-};
-
-function initMusicPlayer() {
-    if (!ytReady) { setTimeout(initMusicPlayer, 200); return; }
     ytPlayer = new YT.Player("yt-player", {
         videoId: MAN_MERA_ID,
         playerVars: { 
-            autoplay: 1, 
+            autoplay: 0, 
             loop: 1, 
             playlist: MAN_MERA_ID, 
             controls: 0, 
@@ -25,14 +21,18 @@ function initMusicPlayer() {
         },
         events: {
             onReady: (e) => {
+                ytReady = true;
                 e.target.setVolume(70);
-                e.target.playVideo();
-                const btn = document.getElementById("music-toggle");
-                if (btn) btn.style.display = "flex";
+                // If they clicked enter before iframe fully loaded
+                if (userClickedEnter) {
+                    e.target.playVideo();
+                    const btn = document.getElementById("music-toggle");
+                    if (btn) btn.style.display = "flex";
+                }
             }
         }
     });
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -252,8 +252,15 @@ document.addEventListener("DOMContentLoaded", () => {
         enterBtn.addEventListener("click", () => {
             loaderStart.classList.add("hidden");
             loadingStage.classList.remove("hidden");
-            // 🎵 Start Man Mera
-            initMusicPlayer();
+            
+            userClickedEnter = true;
+            // 🎵 Start Man Mera directly from click to bypass browser block
+            if (ytReady && ytPlayer && typeof ytPlayer.playVideo === "function") {
+                ytPlayer.playVideo();
+                const btn = document.getElementById("music-toggle");
+                if (btn) btn.style.display = "flex";
+            }
+            
             setTimeout(() => {
                 loaderOverlay.classList.add("fade-out");
                 setTimeout(() => loaderOverlay.remove(), 1500);
