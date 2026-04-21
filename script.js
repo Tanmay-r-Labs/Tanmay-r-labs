@@ -15,7 +15,14 @@ function initMusicPlayer() {
     if (!ytReady) { setTimeout(initMusicPlayer, 200); return; }
     ytPlayer = new YT.Player("yt-player", {
         videoId: MAN_MERA_ID,
-        playerVars: { autoplay: 1, loop: 1, playlist: MAN_MERA_ID, controls: 0, modestbranding: 1 },
+        playerVars: { 
+            autoplay: 1, 
+            loop: 1, 
+            playlist: MAN_MERA_ID, 
+            controls: 0, 
+            modestbranding: 1,
+            origin: window.location.origin
+        },
         events: {
             onReady: (e) => {
                 e.target.setVolume(70);
