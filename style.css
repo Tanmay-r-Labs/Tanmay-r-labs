@@ -562,15 +562,148 @@ body.light-mode .sun-icon { opacity: 0; }
     transform: translateY(0);
 }
 
-@media (max-width: 1200px) {
-    .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-    .card-large, .card-medium, .card-small { grid-column: span 2; min-height: 300px; }
-    .hero-central { padding: 10vh 2rem; }
-    .main-title { font-size: 4rem; }
+/* ============================================
+   RESPONSIVE: TABLET (max 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+    :root { --section-pad: 10vh 8vw; }
+
+    .bossbar { padding: 0 2rem; height: 70px; }
+    .brand-tag { font-size: 1.3rem; letter-spacing: 4px; top: 8px; }
+    .boss-link { font-size: 0.78rem; gap: 1rem; }
+    .bossbar-right { gap: 1.2rem; }
+
+    .hero-minimalist { padding-top: 180px; }
+    .hero-title { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .hero-name { font-size: 5rem; }
+
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-large, .card-medium, .card-small { grid-column: span 2; min-height: 260px; }
+
+    .facts-container { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+    .artifacts-masonry { grid-template-columns: repeat(2, 1fr); }
+
+    .anime-spotlight { grid-template-columns: 1fr; gap: 2rem; }
+    .anime-image-container { min-height: 280px; padding: 2rem; }
 }
+
+/* ============================================
+   RESPONSIVE: MOBILE (max 768px)
+   ============================================ */
 @media (max-width: 768px) {
-    .minimal-nav { left: 2rem; right: 2rem; }
-    .main-title { font-size: 3.5rem; }
+    :root { --section-pad: 8vh 5vw; }
+    html { font-size: 12px; }
+
+    /* --- BOSSBAR --- */
+    .bossbar {
+        height: auto;
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        position: fixed; /* Sticky on mobile */
+    }
+    .bossbar-left { flex: none; width: 100%; justify-content: flex-start; }
+    .bossbar-center { display: none; } /* Hide brand in center — shown in left */
+    .bossbar-right {
+        flex: none;
+        width: 100%;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+    .boss-link { font-size: 0.72rem; white-space: nowrap; }
+    .contact-me-btn { padding: 0.4rem 1rem; font-size: 0.75rem; }
+    .header-name .name { font-size: 0.95rem; }
+    .header-name .role { font-size: 0.75rem; }
+
+    /* Show brand-tag inline in bossbar-left on mobile */
+    .brand-tag {
+        position: static;
+        transform: none;
+        font-size: 1.1rem;
+        letter-spacing: 3px;
+        margin-left: auto;
+    }
+
+    /* --- HERO --- */
+    .hero-minimalist { padding-top: 160px; min-height: auto; padding-bottom: 4rem; }
+    .hero-title {
+        font-size: clamp(1.6rem, 7vw, 2.8rem);
+        line-height: 1.25;
+        margin-bottom: 4rem;
+        padding: 0 1rem;
+    }
+    .hero-name { font-size: clamp(2.8rem, 12vw, 5rem); letter-spacing: -2px; }
+    .hero-bio { font-size: 1.1rem; padding: 0 1rem; }
+    .profile-target { width: 180px; min-height: 230px; }
+    .hero-header-flex { gap: 1.5rem; }
+    .hero-identity { max-width: 100%; padding: 0 1rem; }
+
+    /* --- FACTS --- */
+    .facts-container { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; }
+    .fact-box p { font-size: 1rem; }
+
+    /* --- BENTO GRID (HOBBIES) --- */
+    .bento-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .card-large, .card-medium, .card-small { grid-column: span 1; min-height: 200px; }
+
+    /* --- ARTIFACTS --- */
+    .artifacts-masonry { grid-template-columns: 1fr; gap: 1.5rem; }
+    .spotlight-artifact { min-height: auto !important; }
+
+    /* --- GAMES --- */
+    .games-section-grid { grid-template-columns: 1fr !important; }
+
+    /* --- HISTORY / TIMELINE --- */
+    .history-sequence { flex-direction: column; gap: 2rem; }
+    .sequence-item { min-width: unset; width: 100%; }
+
+    /* --- ANIME SECTION --- */
+    .anime-spotlight {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    .anime-image-container { min-height: 220px; padding: 1.5rem; }
+    .anime-info h3 { font-size: 2rem; }
+    .anime-stats { flex-direction: column; gap: 0.8rem; }
+
+    /* --- FEEDBACK ROOM --- */
+    .feedback-layout { flex-direction: column; }
+    .feedback-wall { min-height: 150px; }
+
+    /* --- CONTACT --- */
+    .contact-square { padding: 1.5rem; }
+    .contact-label { width: 110px; font-size: 0.85rem; }
+    .contact-value { font-size: 0.9rem; }
+
+    /* --- SECTION TITLES --- */
+    .section-title { font-size: 1.8rem; margin-bottom: 3rem; }
+
+    /* --- LOADER --- */
+    .loader-brand { font-size: 2.5rem; letter-spacing: 6px; }
+    .glitch { font-size: 3rem; }
+}
+
+/* ============================================
+   RESPONSIVE: SMALL MOBILE (max 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    :root { --section-pad: 6vh 4vw; }
+
+    .hero-title { font-size: clamp(1.4rem, 6.5vw, 2.2rem); }
+    .hero-name { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+    .profile-target { width: 150px; min-height: 190px; }
+
+    .facts-container { grid-template-columns: 1fr; }
+
+    .bossbar-right { gap: 0.5rem; }
+    .boss-link { font-size: 0.65rem; }
+
+    .anime-info h3 { font-size: 1.6rem; }
 }
 
 /* --- EXTENDED GRID ITEMS & MODAL --- */
